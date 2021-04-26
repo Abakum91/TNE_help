@@ -1,0 +1,51 @@
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get("http://demo.automationtesting.in/WebTable.html")
+More = driver.find_element_by_xpath("/html/body/header/nav/div/div[2]/ul/li[9]/a").click()
+Loader = driver.find_element_by_xpath("/html/body/header/nav/div/div[2]/ul/li[9]/ul/li[6]/a").click()
+run_btn = driver.find_element_by_id("loader")
+run_btn.click()
+run_btn = WebDriverWait(driver, 10).until(
+    EC.text_to_be_present_in_element((By.ID, "loader"), "Run"))
+time.sleep(10)
+some_element = WebDriverWait(driver, 20).until(
+    EC.text_to_be_present_in_element((By.CSS_SELECTOR, ".modal-body > p"), "Lorem"))
+save_changes = WebDriverWait(driver, 20).until(
+    EC.element_to_be_clickable((By.XPATH, "/html/body/section/div[1]/div/div/div/div[2]//div[3]/button[2]")))
+save_changes.click()
+driver.quit()
+
+ПРАВИЛЬНЫЙ!!!!!!!!!!!
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get("http://demo.automationtesting.in/WebTable.html")
+
+# Переход в раздел More -> Loader
+more = driver.find_element_by_link_text("More")
+more.click()
+more_loader = driver.find_element_by_link_text("Loader")
+more_loader.click()
+
+# Реализация неявных ожиданий
+run_btn = WebDriverWait(driver, 10).until(
+EC.element_to_be_clickable((By.ID, "loader")) # css_selector: .panel-default > div > button
+)
+run_btn.click()
+
+save_changes_btn = WebDriverWait(driver, 20).until(
+EC.element_to_be_clickable((By.CSS_SELECTOR, ".modal-footer .btn-primary"))
+)
+save_changes_btn.click()
+
+driver.quit()

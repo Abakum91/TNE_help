@@ -1,0 +1,96 @@
+1) x = 25
+print(x+25)
+2) x = 50
+y = 25
+print(x+y)
+3) x = int(input())
+z = (x*60)
+y = int(input())
+print(z+y)
+4) x = input()
+y = input()
+print(x, y)
+5) x = input()
+y = input()
+print(len(x+y))
+6) x = input("Текст подсказки1:")
+y = input("Текст подсказки2:")
+z = int(input("Текст подсказки3:"))
+print("Текст подсказки:", ((x+y)*z))
+7)a,b,c,d=False,True,False,True
+print(a and ((b and not c) or d))
+8)x = int(input())
+y = int(input())
+print(x>y)
+9)x = int(input())
+y = int(input())
+if x + y > 10 :
+    print('Сумма больше')
+elif x + y < 10:
+    print('Сумма меньше')
+else: print('Сумма равна')
+10)x = int(input())
+if x == 0:
+    print('0')
+elif x >= 1:
+    print('1')
+else: print('-1')
+11) x = int(input())
+y = int(input())
+if x == y:
+    print('Числа совпадают')
+elif x > y:
+    print(y)
+else: print(x)
+12) x = input('Введите Имя:')
+y = input('Введите профессию:')
+z = int(input('Введите возраст:'))
+print('Имя: ', x, '\n' 'Профессия: ', y, '\n' 'Возраст: ', z)
+13) a = int(input())
+b = int(input())
+c = int(input())
+d = int(input())
+print((a+b)/(c+d))
+14) a = int(input())
+b = int(input())
+c = int(input())
+if a>b>c:
+    print(a)
+elif b<c:
+    print(c)
+elif a<b>c:
+    print(b)
+15)a = int(input())
+b = int(input())
+c = int(input())
+if a>b>c:
+    print(b)
+elif c>b>a:
+    print(b)
+elif b<a<c:
+    print(a)
+elif b>a>c:
+    print(a)
+elif b>c>a:
+    print(c)
+elif b<c<a:
+    print(c)
+16) a = int(input())
+b = a+1
+c = a-1
+print('Следующее число для числа ', a, 'это ', b, '\n' 'Предыдущее число для числа ', a, 'это', c)
+17) a = int(input('Сколько у Вас денег?'))
+b = 180
+if b == a:
+    print('Спасибо, что без сдачи!')
+elif b < a:
+    print('Стоимость товара: 180 руб', '\n''Ваша сдача:', a-b, 'руб')
+else: print('Недостаточно денег')
+18) x = int(input())
+y = int(input())
+z = int(input())
+if x<=z<=y:
+    print('Это нормально')
+elif x<=y<z:
+    print('Много бегать вредно')
+else: print('Слишком мало бегаете')

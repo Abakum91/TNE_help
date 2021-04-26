@@ -1,0 +1,79 @@
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get("http://demo.automationtesting.in/WebTable.html")
+driver.implicitly_wait(20)
+driver.find_element_by_xpath("/html/body/header/nav/div/div[2]/ul/li[4]/a").click()
+driver.find_element_by_xpath("/html/body/header/nav/div/div[2]/ul/li[4]/ul/li[2]/a").click()
+window0 = driver.current_window_handle
+driver.find_element_by_css_selector("#Tabbed>a>button").click()
+window1 = driver.window_handles[2]
+driver.switch_to.window(window1)
+time.sleep(2)
+driver.close()
+driver.switch_to_window(window0)
+driver.find_element_by_xpath("/html/body[1]/div[1]/div[1]/div[1]/div/div[1]/ul/li[3]/a").click()
+driver.find_element_by_css_selector("#Multiple>button").click()
+window2 = driver.window_handles[3]
+driver.switch_to.window(window2)
+wait = WebDriverWait(driver, 3)
+window2 = wait.until(
+    EC.url_to_be("http://demo.automationtesting.in/Index.html"))
+number_window = wait.until(
+    EC.number_of_windows_to_be(3))
+print(number_window)
+email = driver.find_element_by_id("email")
+email.send_keys("ramzy91@yandex.ru")
+driver.find_element_by_id("enterimg").click()
+register = wait.until(
+    EC.url_to_be("http://demo.automationtesting.in/Register.html"))
+driver.quit()
+
+ПРАВИЛЬНО!!!!!!!!!
+
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.implicitly_wait(5)
+wait = WebDriverWait(driver, 10) # вынесли повторяющуюся часть в переменную wait
+driver.get("http://demo.automationtesting.in/WebTable.html")
+
+# Переход в раздел SwitchTo -> Windows
+switch_to = driver.find_element_by_link_text("SwitchTo")
+switch_to.click()
+switch_to_windows = driver.find_element_by_link_text("Windows")
+switch_to_windows.click()
+# Открытие нового окна
+first_browser_tab = driver.current_window_handle
+open_new_run_btn = driver.find_element_by_css_selector(".active .btn")
+open_new_run_btn.click()
+# Переключение на второе окно > его закрытие - > переключение обратно на первое окно
+second_browser_tab = driver.window_handles[1]
+driver.switch_to.window(second_browser_tab)
+driver.close() # закрытие вкладки
+driver.switch_to.window(first_browser_tab)
+# Открытие Separate Multiple Windows - > click
+open_separate_multiple_tab = driver.find_element_by_css_selector("li:nth-child(3) > a.analystic")
+open_separate_multiple_tab.click()
+open_separate_multiple_run_btn = driver.find_element_by_css_selector("#Multiple > button")
+open_separate_multiple_run_btn.click()
+# Переключение на второе окно. Проверка что адрес страницы верный и что в браузере открыто 3 вкладки
+driver.switch_to.window(driver.window_handles[2]) # цифра 2(а не 1), тк до этого закрывали вкладку и она есть в памяти
+link_check = wait.until(EC.url_to_be("http://demo.automationtesting.in/Index.html"))
+number_of_tabs = wait.until(EC.number_of_windows_to_be(3)) # кавычки для цифры не нужны
+print(number_of_tabs)
+# Ввод email и проверка что адрес финальной страницы верный
+email = driver.find_element_by_id("email")
+email.send_keys("email@mail.ru")
+send_btn = driver.find_element_by_id("enterimg")
+send_btn.click()
+final_link_check = wait.until(EC.url_to_be("http://demo.automationtesting.in/Register.html"))
+
+driver.quit()

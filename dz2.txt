@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+ <body>
+  <h1>Look at my awesome pet:</h1>
+  <img class="picture" src="https://sun9-14.userapi.com/c9282/u84544475/-6/y_507a05c6.jpg"
+  <div name="about"> 
+  <h3 id="pet-name">Hello world</h3>
+   <p title="">It's my first work!</p>
+
+  </div>
+ </body>
+</html>
+
+1.1 #blocks, [title="one-thing"], [name="main"], article
+1.2 p.card-text
+1.3 h1
+1.4 div.btn-group>a.text-muted
+1.5 /html/body/main/div//input
+1.6 #star>div>div>button
+1.7 div.row>:nth-child(3)>div>img
+
+import time
+from selenium import webdriver 				  # импортируем webdriver
+driver = webdriver.Chrome() 					  # вызываем драйвер браузера, после этой команды вы должны увидеть новое открытое окно браузера
+# Логин в систему
+driver.get("https://opensource-demo.orangehrmlive.com/") 	  # метод get сообщает браузеру, что нужно открыть сайт по указанной ссылке
+login = driver.find_element_by_id("txtUsername")		  # объявляем переменную login, задаём ей значение селектора поля логин
+login.send_keys("Admin")					  # команда send_keys(“значение”) – нужна для ввода информации в поле
+password = driver.find_element_by_id("txtPassword") 	  # объявляем переменную password, задаём ей значение селектора поля пароль
+password.send_keys("admin123")			              # теперь наглядно видна польза объявленной переменной(не нужно писать driver_find…. .send_keys(..))
+login_btn = driver.find_element_by_id("btnLogin") 	  # объявляем переменную login_btn, задаём ей значение селектора кнопки логин (btn сокращ. от button)
+login_btn.click()						  # команда click() – нужна для нажатия(клика) на элемент
+driver.quit()
+
+import time
+from selenium import webdriver 				  # импортируем webdriver
+driver = webdriver.Chrome() 					  # вызываем драйвер браузера, после этой команды вы должны увидеть новое открытое окно браузера
+# Логин в систему
+driver.get("https://opensource-demo.orangehrmlive.com/") 	  # метод get сообщает браузеру, что нужно открыть сайт по указанной ссылке
+login = driver.find_element_by_id("txtUsername")		  # объявляем переменную login, задаём ей значение селектора поля логин
+login.send_keys("Admin")					  # команда send_keys(“значение”) – нужна для ввода информации в поле
+password = driver.find_element_by_id("txtPassword") 	  # объявляем переменную password, задаём ей значение селектора поля пароль
+password.send_keys("admin123")			              # теперь наглядно видна польза объявленной переменной(не нужно писать driver_find…. .send_keys(..))
+login_btn = driver.find_element_by_id("btnLogin") 	  # объявляем переменную login_btn, задаём ей значение селектора кнопки логин (btn сокращ. от button)
+login_btn.click()						  # команда click() – нужна для нажатия(клика) на элемент
+pim = driver.find_element_by_id("menu_pim_viewPimModule")
+pim.click()
+time.sleep(3)
+Add_Employee = driver.find_element_by_id("menu_pim_addEmployee")
+Add_Employee.click()
+firstName = driver.find_element_by_id("firstName")
+firstName.send_keys("Алексей")
+lastName = driver.find_element_by_id("lastName")
+lastName.send_keys("Абакумов")
+SAVE = driver.find_element_by_id("btnSave")
+SAVE.click()
+driver.quit()
+
+import time
+from selenium import webdriver 				  # импортируем webdriver
+driver = webdriver.Chrome() 					  # вызываем драйвер браузера, после этой команды вы должны увидеть новое открытое окно браузера
+# Логин в систему
+driver.get("https://opensource-demo.orangehrmlive.com/") 	  # метод get сообщает браузеру, что нужно открыть сайт по указанной ссылке
+login = driver.find_element_by_id("txtUsername")		  # объявляем переменную login, задаём ей значение селектора поля логин
+login.send_keys("Admin")					  # команда send_keys(“значение”) – нужна для ввода информации в поле
+password = driver.find_element_by_id("txtPassword") 	  # объявляем переменную password, задаём ей значение селектора поля пароль
+password.send_keys("admin123")			              # теперь наглядно видна польза объявленной переменной(не нужно писать driver_find…. .send_keys(..))
+login_btn = driver.find_element_by_id("btnLogin") 	  # объявляем переменную login_btn, задаём ей значение селектора кнопки логин (btn сокращ. от button)
+login_btn.click()						  # команда click() – нужна для нажатия(клика) на элемент
+pim = driver.find_element_by_id("menu_pim_viewPimModule")
+pim.click()
+time.sleep(3)
+Employee_List = driver.find_element_by_id("menu_pim_viewEmployeeList")
+Employee_List.click()
+time.sleep(3)
+Employee_Name = driver.find_element_by_id("empsearch_employee_name_empName")
+Employee_Name.send_keys("Алексей Абакумов")
+time.sleep(3)
+Search = driver.find_element_by_id("searchBtn")
+Search.click()
+time.sleep(3)
+checkbox = driver.find_element_by_xpath("html/body/div/div/div/div/form/div/table/tbody//input[1]")
+checkbox.click()
+time.sleep(3)
+Delete = driver.find_element_by_id("btnDelete")
+Delete.click()
+Ok = driver.find_element_by_id("dialogDeleteBtn")
+Ok.click()
+driver.quit()
+
+import time
+from selenium import webdriver 				  # импортируем webdriver
+driver = webdriver.Chrome() 					  # вызываем драйвер браузера, после этой команды вы должны увидеть новое открытое окно браузера
+driver.maximize_window()					# позволяет открывать бразуер в полном окне, рекомендуется к дальнейшему использованию
+driver.get("http://www.rushplace.com/")		            # метод get сообщает браузеру, что нужно открыть сайт по указанной ссылке
+time.sleep(2)
+ADD_TO_BASKET1 = driver.find_element_by_xpath("/html/body/div/div/div/ul/li[1]/a[2]")
+ADD_TO_BASKET1.click()
+time.sleep(2)
+ADD_TO_BASKET2 = driver.find_element_by_xpath("/html/body/div/div/div/ul/li[2]/a[2]")
+ADD_TO_BASKET2.click()
+time.sleep(2)
+ADD_TO_BASKET3 = driver.find_element_by_xpath("/html/body/div/div/div/ul/li[3]/a[2]")
+ADD_TO_BASKET3.click()
+time.sleep(2)
+BASKET = driver.find_element_by_xpath("/html/body/div/header/div/div/div/a")
+BASKET.click()
+items_count = driver.find_elements_by_xpath("/html/body/div/div/div/main/article/div/div/form/table/tbody/tr/td[2]/a/img")    # находим список всех элементов в корзине
+# проверка, что в корзине действительно 3 товара (добавьте в конец теста)
+if len(items_count) == 3:					# после 1-го урока можем теперь создать небольшую конструкцию для проверки кол-ва товаров
+    print("В корзине 3 товара")				# len здесь посчитает количество элементов, найденных при помощи find_elements
+else:
+    print("Ошибка. Количество товаров в корзине: " + str(len(items_count)))
+
+
+
+
+
+

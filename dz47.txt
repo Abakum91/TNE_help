@@ -1,0 +1,73 @@
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get("http://practice.automationtesting.in/")
+driver.implicitly_wait(20)
+driver.find_element_by_id("menu-item-50").click()
+username = driver.find_element_by_id("username")
+username.send_keys("ramzy91@yandex.ru")
+password = driver.find_element_by_id("password")
+password.send_keys("ABAKUMOV1234567890")
+driver.find_element_by_name("login").click()
+driver.find_element_by_id("menu-item-40").click()
+time.sleep(1)
+driver.find_element_by_css_selector("#content>ul>:nth-child(1)>a>h3").click()
+old_price = WebDriverWait(driver, 10).until(
+    EC.text_to_be_present_in_element((By.CSS_SELECTOR, "#product-169>:nth-child(3)>:nth-child(2)>p>del>span"), "₹600.00"))
+new_price = WebDriverWait(driver, 10).until(
+    EC.text_to_be_present_in_element((By.CSS_SELECTOR, "#product-169>:nth-child(3)>:nth-child(2)>p>ins>span"), "₹450.00"))
+time.sleep(2)
+picture = WebDriverWait(driver, 5).until(
+    EC.element_to_be_clickable((By.CSS_SELECTOR, "#product-169>:nth-child(2)>a>img")))
+picture.click()
+time.sleep(2)
+close = WebDriverWait(driver, 5).until(
+    EC.element_to_be_clickable((By.XPATH, "/html/body/div[3]/div[3]/div/div/div/div[2]/div[3]/a")))
+close.click()
+
+ПРАВИЛЬНО!!!!!!!!!!
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+driver = webdriver.Chrome()
+driver.get("http://practice.automationtesting.in/")
+driver.implicitly_wait(5)
+driver.maximize_window()
+
+# Логин
+my_account_menu = driver.find_element_by_link_text("My Account")
+my_account_menu.click()
+user_name_field = driver.find_element_by_id("username")
+user_name_field.send_keys("test@email.com")
+password_field = driver.find_element_by_id("password")
+password_field.send_keys("SomeHardPassword123!@#!@#")
+login_btn = driver.find_element_by_name("login")
+login_btn.click()
+# Переход на вкладку Shop
+shop_tab = driver.find_element_by_link_text("Shop")
+shop_tab.click()
+android_quick_start_book = driver.find_element_by_css_selector(".post-169 h3")
+android_quick_start_book.click()
+book_old_price = driver.find_element_by_css_selector(".price > del > span")
+book_old_price_text = book_old_price.text
+book_new_price = driver.find_element_by_css_selector(".price > ins > span")
+book_new_price_text = book_new_price.text
+assert book_old_price_text == "₹600.00"
+assert book_new_price_text == "₹450.00"
+# Явное ожидание для обложки книги
+book_cover = WebDriverWait(driver, 10).until(
+EC.element_to_be_clickable((By.CSS_SELECTOR, ".images > a")))
+book_cover.click()
+# Явное ожидание для кнопки закрытия обложки книги в режиме предпросмотра
+book_cover_close = WebDriverWait(driver, 10).until(
+EC.element_to_be_clickable((By.CSS_SELECTOR, ".pp_close")))
+book_cover_close.click()
+
+driver.quit()
